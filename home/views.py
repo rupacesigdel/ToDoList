@@ -1,5 +1,12 @@
 from django.shortcuts import render, HttpResponse
 from home.models import Task
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def my_view(request):
+    return render(request, 'my_template.html')
+
+
 # Create your views here.
 def home(request):
     context = {'success': False, 'name' :'Rupesh'}

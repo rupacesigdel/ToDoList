@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  opal-server:
+    image: authorizon/opal-server:latest
+    ports:
+      - "7002:7002"
+    environment:
+      - GIT_REPO_URL=git@github.com:rupacesigdel/ToDoList.git
+      - GIT_REPO_SSH_KEY= |
+          -----BEGIN OPENSSH PRIVATE KEY-----
+          ...your private key content...
+          -----END OPENSSH PRIVATE KEY-----
+
+  opal-client:
+    image: authorizon/opal-client:latest
+    environment:
+      - OPAL_SERVER_URL=http://opal-server:7002
+      - OPA_SERVER_URL=http://opa:8181
+    depends_on:
+      - opal-server
+      - opa
+
+  opa:
+    image: openpolicyagent/opa:latest
+    ports:
+      - "8181:8181"
