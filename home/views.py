@@ -21,3 +21,12 @@ def task(request):
     #     print(item.taskTitle)
     context = {'task': allTasks}
     return render(request, 'task.html', context)
+
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        results = Task.objects.filter(taskTitle__icontains=query)  | Task.objects.filter(taskDesc__icontains=query) # replace with actual field
+    else:
+        results = Task.objects.none()
+    
+    return render(request, 'search_results.html', {'results': results})

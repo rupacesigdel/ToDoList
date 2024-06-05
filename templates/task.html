@@ -23,10 +23,11 @@
                 <a class="nav-link active" href="/task">Task</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <form action="/search" method="GET">
+              <label for="searchQuery">Search:</label>
+              <input type="text" id="searchQuery" name="q">
+              <button type="submit">Search</button>
+          </form>
           </div>
         </div>
     </nav>
@@ -37,7 +38,7 @@
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
+                <th scope="col">S.N</th>
                 <th scope="col">Task Title</th>
                 <th scope="col">Task Discriptions</th>
               </tr>
@@ -62,7 +63,7 @@
 
     <footer class="bg-dark text-light fixed-bottom">
       <p class="text-center py-0 my-0">
-      Programming &copy; 2024 | All rights reserved
+      ToDo-add a task &copy; 2024 | All rights reserved
       </p>
    </footer>
 

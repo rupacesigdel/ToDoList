@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <ul>
+        {% for result in results %}
+            <li>{{ result.taskTitle }}: {{ result.taskDesc }}</li>
+        {% empty %}
+            <li>No results found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
