@@ -1,6 +1,7 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from home.models import Task
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 @login_required
 def my_view(request):
@@ -37,3 +38,29 @@ def search(request):
         results = Task.objects.none()
     
     return render(request, 'search_results.html', {'results': results})
+
+@login_required
+def delete_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    request.session['deleted_task'] = {
+        'id': task.id,
+        'title': task.taskTitle,
+        'desc': task.taskDesc,
+    }
+    task.delete()
+    messages.success(request, 'Task deleted! <a href="/undo_delete/">Undo</a>', extra_tags='safe')
+    return redirect('/task')
+
+@login_required
+def undo_delete(request):
+    deleted_task = request.session.pop('deleted_task', None)
+    if deleted_task:
+        Task.objects.create(
+            id=deleted_task['id'],
+            taskTitle=deleted_task['title'],
+            taskDesc=deleted_task['desc'],
+        )
+        messages.success(request, 'Task restored!')
+    else:
+        messages.error(request, 'No task to restore.')
+    return redirect('/task')

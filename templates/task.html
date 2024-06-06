@@ -27,45 +27,58 @@
               <label for="searchQuery">Search:</label>
               <input type="text" id="searchQuery" name="q">
               <button type="submit">Search</button>
-          </form>
+            </form>
           </div>
         </div>
     </nav>
 
-
     <div class="container my-3">
         <h2 class="text-center">ToDos List - All Tasks</h2>
+
+        <!-- Display messages -->
+        {% if messages %}
+          <div>
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message|safe }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
         <table class="table">
             <thead>
               <tr>
                 <th scope="col">S.N</th>
                 <th scope="col">Task Title</th>
-                <th scope="col">Task Discriptions</th>
+                <th scope="col">Task Descriptions</th>
+                <th scope="col">Actions</th> <!-- Add this column for actions -->
               </tr>
             </thead>
             <tbody>
-
-
-              {% comment %} run a for loop here and iterate through all the tasks {% endcomment %}
-              {% for tasks in task %} 
-
+              {% for task in task %}
                 <tr>
-                  <th scope="row">{{forloop.counter}}</th>
-                  <td>{{tasks.taskTitle}}</td>
-                  <td>{{tasks.taskDesc}}</td>
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td>{{ task.taskTitle }}</td>
+                  <td>{{ task.taskDesc }}</td>
+                  <td>
+                    <!-- Delete Button -->
+                    <form action="{% url 'delete_task' task.id %}" method="post" style="display:inline;">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                  </td>
                 </tr>
               {% endfor %}
-
             </tbody>
-          </table>
-        </div>
-
+        </table>
+    </div>
 
     <footer class="bg-dark text-light fixed-bottom">
       <p class="text-center py-0 my-0">
-      ToDo-add a task &copy; 2024 | All rights reserved
+        ToDo-add a task &copy; 2024 | All rights reserved
       </p>
-   </footer>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
