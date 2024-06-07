@@ -28,6 +28,11 @@ A simple web-based ToDo list application built with Django and Bootstrap. This a
 - edit task
 - Authorization using OPAL
 
+## Demo Video
+
+[Watch the demo video]([https://drive.google.com/file/d/YOUR_FILE_ID/view](https://github.com/rupacesigdel/ToDoList/assets/159915440/46d377ec-9332-4e98-aea1-652be26483b6
+))
+
 ## Technologies Used
 
 - **Backend**: Django
