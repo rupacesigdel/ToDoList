@@ -52,7 +52,7 @@
                 <th scope="col">S.N</th>
                 <th scope="col">Task Title</th>
                 <th scope="col">Task Descriptions</th>
-                <th scope="col">Actions</th> <!-- Add this column for actions -->
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -62,6 +62,8 @@
                   <td>{{ task.taskTitle }}</td>
                   <td>{{ task.taskDesc }}</td>
                   <td>
+                    <a href="{% url 'edit_task' task.id %}" class="btn btn-primary">Edit Task</a>
+
                     <!-- Delete Button -->
                     <form action="{% url 'delete_task' task.id %}" method="post" style="display:inline;">
                       {% csrf_token %}

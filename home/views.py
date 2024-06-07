@@ -64,3 +64,19 @@ def undo_delete(request):
     else:
         messages.error(request, 'No task to restore.')
     return redirect('/task')
+
+@login_required
+def edit_task(request, pk):  # Change 'task_id' to 'pk'
+    task = get_object_or_404(Task, id=pk)
+    if request.method == 'POST':
+        # Handle form submission for editing task
+        title = request.POST['title']
+        desc = request.POST['desc']
+        task.taskTitle = title
+        task.taskDesc = desc
+        task.save()
+        messages.success(request, 'Task updated successfully!')
+        return redirect('/task')
+    else:
+        context = {'task': task}
+        return render(request, 'edit_task.html', context)
