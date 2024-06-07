@@ -24,6 +24,8 @@ A simple web-based ToDo list application built with Django and Bootstrap. This a
 - View a list of all tasks
 - Search for tasks
 - Delete tasks
+- undo task
+- edit task
 - Authorization using OPAL
 
 ## Technologies Used
