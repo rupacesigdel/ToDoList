@@ -30,8 +30,7 @@ A simple web-based ToDo list application built with Django and Bootstrap. This a
 
 ## Demo Video
 
-[Watch the demo video]([https://drive.google.com/file/d/YOUR_FILE_ID/view](https://github.com/rupacesigdel/ToDoList/assets/159915440/46d377ec-9332-4e98-aea1-652be26483b6
-))
+[Watch the demo video](https://github.com/rupacesigdel/ToDoList/assets/159915440/5d2dde3c-ce24-4de7-b256-b1042439eb4c)
 
 ## Technologies Used
 
@@ -56,7 +55,7 @@ Ensure you have the following installed:
 1. **Clone the repository**:
     ```sh
     git clone https://github.com/rupacesigdel/ToDoList.git
-    cd todo-list
+    cd ToDoList
     ```
 
 2. **Create and activate a virtual environment**:
